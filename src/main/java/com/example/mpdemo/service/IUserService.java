@@ -12,7 +12,7 @@ public interface IUserService extends IService<User>{
 
     List<User> selectListByUser(UserDto user);
 
-    User findAdmin();
+    User findAdmin(String accname);
 
     List<TableColumns> selectColumns();
 

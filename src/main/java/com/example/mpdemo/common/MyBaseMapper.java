@@ -13,5 +13,5 @@ public interface MyBaseMapper<T> extends BaseMapper<T>{
      * 查询表数据库字段
      */
     List<TableColumns> selectColumns();
-    
+
 }

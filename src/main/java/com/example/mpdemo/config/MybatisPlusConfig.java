@@ -1,6 +1,8 @@
 package com.example.mpdemo.config;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -52,4 +54,14 @@ public class MybatisPlusConfig {
     public MyBaseSqlInjector myBaseSqlInjector() {
         return new MyBaseSqlInjector();
     }
+
+
+    /**
+     * 序列化枚举值为数据库存储值
+     * JSONUtil.parse(admin)不能转成对应值
+     */
+    /*@Bean
+    public Jackson2ObjectMapperBuilderCustomizer customizer(){
+        return builder -> builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
+    }*/
 }

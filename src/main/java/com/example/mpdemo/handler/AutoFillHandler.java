@@ -1,9 +1,11 @@
 package com.example.mpdemo.handler;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import com.example.mpdemo.enums.DeleteEnum;
 import org.apache.ibatis.reflection.MetaObject;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
@@ -15,19 +17,19 @@ public class AutoFillHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        Date now = new Date();
-        this.strictInsertFill(metaObject,"deleted",Boolean.class,Boolean.FALSE);
+        LocalDateTime now = LocalDateTime.now();
+        this.strictInsertFill(metaObject,"deleted", DeleteEnum.class,DeleteEnum.DELETE_NO);
         this.strictInsertFill(metaObject,"version",Integer.class,0);
-        this.strictInsertFill(metaObject, "createtime", Date.class, now);
+        this.strictInsertFill(metaObject, "createtime", LocalDateTime.class, now);
         this.strictInsertFill(metaObject, "createId", String.class, getCurrentUserId());
-        this.strictInsertFill(metaObject, "updatetime", Date.class, now);
+        this.strictInsertFill(metaObject, "updatetime", LocalDateTime.class, now);
         this.strictInsertFill(metaObject, "updateId", String.class, getCurrentUserId());
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        Date now = new Date();
-        this.strictUpdateFill(metaObject, "updatetime", Date.class, now);
+        LocalDateTime now = LocalDateTime.now();
+        this.strictUpdateFill(metaObject, "updatetime", LocalDateTime.class, now);
         this.strictUpdateFill(metaObject, "updateId", String.class, "updateId");
     }
     

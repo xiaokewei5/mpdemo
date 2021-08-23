@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class TableColumns {
+public class TableColumns extends Base {
 
     /**表名*/
     private String tableName;
@@ -18,5 +18,5 @@ public class TableColumns {
     
     /**字段注释*/
     private String columnComment;
-    
+
 }

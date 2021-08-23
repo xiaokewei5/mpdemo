@@ -1,10 +1,17 @@
 package com.example.mpdemo.entity;
 
+import cn.hutool.json.JSONObject;
+import com.example.mpdemo.enums.OrgTypeEnum;
+import com.example.mpdemo.util.DateUt;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -28,13 +35,14 @@ public class AddUserDto {
     private String passwd;
 
     @ApiModelProperty(value = "组织类型(0-集团1-医院2-供应商)")
-    @Min(value = 0,message = "组织类型不能小于0")
-    @Max(value = 2,message = "组织类型不能大于2")
+    //@Min(value = 0,message = "组织类型不能小于0")
+    //@Max(value = 2,message = "组织类型不能大于2")
     @NotNull(message = "组织类型不能为空")
-    private Integer orgtype;
+    private OrgTypeEnum orgtype;
 
     @ApiModelProperty(value = "手机号")
     @Size(min = 11,max = 11,message = "手机号长度为11位")
+    @Pattern(regexp = "1[3|4|5|7|8][0-9]\\d{8}",message = "手机格式不正确")
     @NotBlank(message = "手机号不能为空")
     private String uphone;
 
@@ -46,5 +54,9 @@ public class AddUserDto {
 
     @ApiModelProperty(value = "个性头像")
     private String uphoto;
+
+    @ApiModelProperty(value = "创建时间")
+    @NotNull(message = "创建时间不能为空")
+    private LocalDateTime createtime;
 
 }
