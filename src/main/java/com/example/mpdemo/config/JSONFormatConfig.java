@@ -1,13 +1,14 @@
 package com.example.mpdemo.config;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.serialize.GlobalSerializeMapping;
 import com.example.mpdemo.common.IBaseEnum;
+import com.example.mpdemo.entity.User;
+import com.example.mpdemo.enums.OrgTypeEnum;
 import com.example.mpdemo.util.DateUt;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -26,7 +27,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 /**
  * @Author: fengyunxiaoxiao
@@ -78,5 +78,12 @@ public class JSONFormatConfig {
         //过滤为null和""的属性
         //objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
         return objectMapper;
+    }
+
+    @Bean
+    public GlobalSerializeMapping globalSerializeMapping(){
+        GlobalSerializeMapping globalSerializeMapping = new GlobalSerializeMapping();
+        globalSerializeMapping.put(User.class,new OrgTypeEnumHuTool());
+        return globalSerializeMapping;
     }
 }

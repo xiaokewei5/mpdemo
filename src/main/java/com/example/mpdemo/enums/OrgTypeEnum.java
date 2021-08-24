@@ -1,9 +1,6 @@
 package com.example.mpdemo.enums;
 
 import com.example.mpdemo.common.IBaseEnum;
-import com.example.mpdemo.config.BaseEnumSerializer;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * @Author: fengyunxiaoxiao

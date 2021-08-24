@@ -27,7 +27,7 @@ public class BaseEnumSerializer extends JsonSerializer<IBaseEnum> {
     public void serialize(IBaseEnum value, JsonGenerator gen, SerializerProvider provider) throws IOException {
         //返回枚举对象值字符串
         //gen.writeString(value.getValue().toString());
-        //返回枚举对象值
+        //返回枚举对象值(相同于添加注解@JsonValue)
         gen.writeObject(value.getValue());
         //enum2Object(value, gen);
     }
